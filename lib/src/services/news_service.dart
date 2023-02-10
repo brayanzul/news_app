@@ -12,17 +12,17 @@ class NewsService with ChangeNotifier {
   NewsService() {
 
 
-    this.getTopHeadlines();
+    getTopHeadlines();
   }
 
   getTopHeadlines() async {
     
-    final url = '$_URL_NEWS/top-headlines?apiKey=$_APIKEY&country=ca';
+    final url = Uri.parse('$_URL_NEWS/top-headlines?apiKey=$_APIKEY&country=ca');
     final resp = await http.get(url as Uri);
 
     final newsResponse = newsResponseFromJson( resp.body );
 
-    this.headlines.addAll( newsResponse.articles );
+    headlines.addAll( newsResponse.articles );
     notifyListeners();
   }
 
