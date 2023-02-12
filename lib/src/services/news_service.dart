@@ -55,14 +55,18 @@ class NewsService with ChangeNotifier {
     notifyListeners();
   }
 
-  getArticlesByCategory( String category ) async {
+  getArticlesByCategory( String categoryModel ) async {
 
-    final url = Uri.parse('$_URL_NEWS/top-headlines?apiKey=$_APIKEY&category=$category');
+    if( categoryArticles!.isNotEmpty ) {
+      return categoryArticles![categoryModel];
+    }
+
+    final url = Uri.parse('$_URL_NEWS/top-headlines?apiKey=$_APIKEY&country=ca&category=$categoryModel');
     final resp = await http.get(url);
 
     final newsResponse = newsResponseFromJson( resp.body );
 
-    //categoryArticles![category].addAll( newsResponse.articles );
+    categoryArticles![categoryModel]?.addAll( newsResponse.articles );
 
     notifyListeners();
 
