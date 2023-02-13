@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         theme: miTema,
-        home: TabsPage(),
+        home: const TabsPage(),
       ),
     );
   }
