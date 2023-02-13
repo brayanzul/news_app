@@ -4,11 +4,13 @@ import 'package:news_app/src/pages/tabs2_page.dart';
 import 'package:provider/provider.dart';
 
 class TabsPage extends StatelessWidget {
+  const TabsPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => new _NavegacionModel(),
+      create: (_) => _NavegacionModel(),
       child: Scaffold(
         body: const _Paginas(),
         bottomNavigationBar: _Navegacion(),
@@ -37,9 +39,7 @@ class _Navegacion extends StatelessWidget {
 }
 
 class _Paginas extends StatelessWidget {
-  const _Paginas({
-    super.key,
-  });
+  const _Paginas();
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +50,11 @@ class _Paginas extends StatelessWidget {
       controller: navegacionModel.pageController,
       //physics: const BouncingScrollPhysics(),
       physics: const NeverScrollableScrollPhysics(),
-      children: <Widget>[
+      children: const <Widget>[
 
         Tab1Page(),
 
-        const Tab2Page(),
+        Tab2Page(),
 
       ],
     );
@@ -64,18 +64,18 @@ class _Paginas extends StatelessWidget {
 class _NavegacionModel with ChangeNotifier{
 
   int _paginaActual = 0;
-  PageController _pageController = new PageController();
+  final PageController _pageController = PageController();
 
-  int get paginaActual => this._paginaActual;
+  int get paginaActual => _paginaActual;
 
   set paginaActual( int valor ) {
-    this._paginaActual = valor;
+    _paginaActual = valor;
 
     _pageController.animateToPage(valor, duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
 
     notifyListeners();
   }
 
-  PageController get pageController => this._pageController;
+  PageController get pageController => _pageController;
 
 }

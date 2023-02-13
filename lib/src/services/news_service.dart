@@ -5,8 +5,10 @@ import 'package:news_app/src/models/category_model.dart';
 import 'package:news_app/src/models/news_models.dart';
 import 'package:http/http.dart' as http;
 
-const _URL_NEWS = 'https://newsapi.org/v2';
-const _APIKEY   = '1abc9d39619b4d0ea4cc9877d5525e4c';
+// ignore: constant_identifier_names
+const String _URL_NEWS = 'https://newsapi.org/v2';
+// ignore: constant_identifier_names
+const String _APIKEY   = '1abc9d39619b4d0ea4cc9877d5525e4c';
 
 class NewsService with ChangeNotifier {
 
@@ -30,9 +32,9 @@ class NewsService with ChangeNotifier {
   NewsService() {
     getTopHeadlines();
 
-    categories.forEach((item) {
+    for (var item in categories) {
       categoryArticles![item.name] = [];
-    });
+    }
 
   }
 
@@ -43,6 +45,8 @@ class NewsService with ChangeNotifier {
     getArticlesByCategory( valor );
     notifyListeners();
   }
+
+  List<Article>? get getArticulosCategoriaSeleccionada => categoryArticles![selectedCategory];
 
   getTopHeadlines() async {
     

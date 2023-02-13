@@ -6,7 +6,7 @@ class ListaNoticias extends StatelessWidget {
 
   final List<Article> noticias;
 
-  const ListaNoticias(this.noticias);
+  const ListaNoticias(this.noticias, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,29 +55,27 @@ class _TarjetaBotones extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
 
-          RawMaterialButton(
-            onPressed: (){},
-            fillColor: miTema.accentColor,
-            shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20) ),
-            child: const Icon(Icons.star_border),
-          ),
+        RawMaterialButton(
+          onPressed: (){},
+          fillColor: miTema.colorScheme.secondary,
+          shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20) ),
+          child: const Icon(Icons.star_border),
+        ),
 
-          const SizedBox( width: 10 ),
+        const SizedBox( width: 10 ),
 
-          RawMaterialButton(
-            onPressed: (){},
-            fillColor: Colors.blue,
-            shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20) ),
-            child: const Icon(Icons.more),
-          ),
+        RawMaterialButton(
+          onPressed: (){},
+          fillColor: Colors.blue,
+          shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(20) ),
+          child: const Icon(Icons.more),
+        ),
 
-        ],
-      ),
+      ],
     );
   }
 }
@@ -109,13 +107,11 @@ class _TarjetaImagen extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: ClipRRect(
         borderRadius: const BorderRadius.only( topLeft: Radius.circular(50), bottomRight: Radius.circular(50) ),
-        child: Container(
-          child: FadeInImage(
-                placeholder: const AssetImage('assets/img/giphy.gif'), 
-                image: NetworkImage(noticia.urlToImage 
-                ?? 'https://files.rcnradio.com/2020-03/periodio_1_0.jpg'
-              ),
-          )
+        child: FadeInImage(
+              placeholder: const AssetImage('assets/img/giphy.gif'), 
+              image: NetworkImage(noticia.urlToImage 
+              ?? 'https://files.rcnradio.com/2020-03/periodio_1_0.jpg'
+            ),
         ),
       ),
     );
@@ -151,7 +147,7 @@ class _TarjetaTopBar extends StatelessWidget {
       margin: const EdgeInsets.only( bottom: 10 ),
       child: Row(
         children: <Widget>[
-          Text('${ index + 1 }. ', style: TextStyle( color: miTema.accentColor )),
+          Text('${ index + 1 }. ', style: TextStyle( color: miTema.shadowColor )),
           Text('${ noticia.source.name }. ')
         ],
       ),
